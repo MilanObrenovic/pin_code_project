@@ -31,7 +31,10 @@ class ProviderSolutionViewModel extends ChangeNotifier {
         );
       }
       if (index + 1 == pins.length) {
-        pins[index].textController.text = value.substring(0, 1);
+        pins[index].textController.text = value.substring(
+          pins[index].textController.text.length - 1,
+          pins[index].textController.text.length,
+        );
         selectionOnFocus(index, isLast: true);
       }
     } else {
@@ -43,8 +46,9 @@ class ProviderSolutionViewModel extends ChangeNotifier {
   }
 
   void selectionOnFocus(int index, {bool isLast = false}) {
-    pins[index].textController.selection =
-        const TextSelection.collapsed(offset: 1);
+    pins[index].textController.selection = TextSelection.collapsed(
+      offset: pins[index].textController.text.length,
+    );
   }
 
   String getOtp() {
