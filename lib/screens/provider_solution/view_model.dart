@@ -25,7 +25,10 @@ class ProviderSolutionViewModel extends ChangeNotifier {
     if (value.isNotEmpty) {
       if (index + 1 < pins.length) {
         pins[index + 1].focusNode.requestFocus();
-        pins[index].textController.text = value.substring(0, 1);
+        pins[index].textController.text = value.substring(
+          pins[index].textController.text.length - 1,
+          pins[index].textController.text.length,
+        );
       }
       if (index + 1 == pins.length) {
         pins[index].textController.text = value.substring(0, 1);
@@ -41,7 +44,7 @@ class ProviderSolutionViewModel extends ChangeNotifier {
 
   void selectionOnFocus(int index, {bool isLast = false}) {
     pins[index].textController.selection =
-        TextSelection.collapsed(offset: isLast ? 1 : 0);
+        const TextSelection.collapsed(offset: 1);
   }
 
   String getOtp() {
