@@ -49,6 +49,8 @@ class ProviderSolutionViewModel extends ChangeNotifier {
     pins[index].textController.selection = TextSelection.collapsed(
       offset: pins[index].textController.text.length,
     );
+    // Rebuild widget
+    notifyListeners();
   }
 
   String getOtp() {
