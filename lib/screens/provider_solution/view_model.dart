@@ -11,15 +11,14 @@ class ProviderSolutionViewModel extends ChangeNotifier {
         focusNode: FocusNode(),
       ),
     );
-
+    // Add listeners to all pin to detect when user tap on pin field
     for (final pin in pins) {
       pin.focusNode.addListener(() => selectionOnFocus(pin.index));
     }
   }
 
+  // Data for all pins
   late List<PinModel> pins;
-
-  final formKey = GlobalKey<FormState>();
 
   void onTextChange(int index, String value) {
     if (value.isNotEmpty) {
@@ -42,6 +41,7 @@ class ProviderSolutionViewModel extends ChangeNotifier {
         pins[index - 1].focusNode.requestFocus();
       }
     }
+    // Rebuild widget
     notifyListeners();
   }
 
